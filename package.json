@@ -1,0 +1,31 @@
+{
+  "name": "easydevicepic",
+  "version": "1.0.0",
+  "description": "Display a picture on a device screen. Download render.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cranberryATO/easyDevicePic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cranberryATO/easyDevicePic/issues"
+  },
+  "homepage": "https://github.com/cranberryATO/easyDevicePic#readme",
+  "dependencies": {
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@types/three": "^0.185.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2"
+  }
+}
