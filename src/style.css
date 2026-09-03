@@ -220,17 +220,101 @@ select:hover,
   display: none;
 }
 
+/*
+ * Narrow screens get a real two-row layout rather than a panel floating over
+ * a full-viewport canvas: the device would otherwise centre itself behind the
+ * controls. The canvas takes the top half and the panel the bottom, so the
+ * model centres in the space that is actually visible.
+ */
 @media (max-width: 700px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    /* dvh tracks the collapsing mobile URL bar; height:100% is the fallback. */
+    height: 100dvh;
+  }
+
+  #scene {
+    position: static;
+    flex: 0 0 50%;
+    min-height: 0;
+    height: auto;
+  }
+
   .panel {
-    top: auto;
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
+    position: static;
+    flex: 1 1 auto;
     width: auto;
-    max-height: 55vh;
+    min-height: 0;
+    max-height: none;
+    border-radius: 0;
+    border-inline: 0;
+    border-bottom: 0;
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
   }
 
   .error {
-    max-width: calc(100vw - 32px);
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-width: none;
+    max-height: 30vh;
+  }
+}
+
+/*
+ * Short viewports — a phone held in landscape — are too wide for the rule
+ * above but far too short to give away half the height. Split side by side
+ * instead, so the model still centres in space the panel isn't covering.
+ * Declared after the width rule so it wins when both match.
+ */
+@media (max-height: 500px) {
+  body {
+    display: flex;
+    flex-direction: row;
+    height: 100dvh;
+  }
+
+  #scene {
+    position: static;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: auto;
+  }
+
+  .panel {
+    position: static;
+    flex: 0 0 min(300px, 45%);
+    width: auto;
+    min-height: 0;
+    max-height: none;
+    border-radius: 0;
+    border-block: 0;
+    border-right: 0;
+    padding-bottom: 18px;
+    padding-right: max(18px, env(safe-area-inset-right));
+  }
+
+  .error {
+    left: 12px;
+    right: auto;
+    bottom: 12px;
+    max-width: 50vw;
+    max-height: 60vh;
+  }
+}
+
+/* Touch devices have no drag & drop, so don't advertise it. */
+.hint__drag {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hint__drag {
+    display: inline;
+  }
+
+  .hint__tap {
+    display: none;
   }
 }

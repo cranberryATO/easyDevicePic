@@ -21,7 +21,10 @@ export type Viewer = {
   resize: () => void;
 };
 
-export function createViewer(canvas: HTMLCanvasElement): Viewer {
+export function createViewer(
+  canvas: HTMLCanvasElement,
+  options: { onResize?: () => void } = {},
+): Viewer {
   const renderer = new THREE.WebGLRenderer({
     canvas,
     alpha: true,
@@ -102,10 +105,15 @@ export function createViewer(canvas: HTMLCanvasElement): Viewer {
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
+    options.onResize?.();
     requestRender();
   }
 
-  window.addEventListener('resize', resize);
+  // Observe the canvas rather than the window: on narrow screens the canvas is
+  // half the viewport, so it also changes when the panel reflows or the mobile
+  // URL bar collapses — neither of which fires a window resize event.
+  // setSize(…, false) leaves the CSS size alone, so this can't feed back.
+  new ResizeObserver(resize).observe(canvas);
   resize();
 
   canvas.addEventListener(

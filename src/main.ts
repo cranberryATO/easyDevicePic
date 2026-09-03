@@ -33,7 +33,7 @@ const readouts: Record<keyof RotationState, HTMLOutputElement> = {
   z: element<HTMLOutputElement>('rot-z-out'),
 };
 
-const viewer = createViewer(canvas);
+const viewer = createViewer(canvas, { onResize: () => updateExportSizeLabel() });
 
 let device: Device | null = null;
 let picture: ImageBitmap | null = null;
@@ -132,7 +132,7 @@ async function setModel(id: string) {
 }
 
 function updateExportSizeLabel() {
-  exportSizeLabel.textContent = `${EXPORT_WIDTH} × ${exportHeightFor(viewer)} px, transparent background`;
+  exportSizeLabel.textContent = `${EXPORT_WIDTH} × ${exportHeightFor(canvas)} px, transparent background`;
 }
 
 // --- wiring ---------------------------------------------------------------
@@ -186,7 +186,6 @@ downloadButton.addEventListener('click', async () => {
   }
 });
 
-window.addEventListener('resize', updateExportSizeLabel);
 updateExportSizeLabel();
 syncSliders(rotation.get());
 

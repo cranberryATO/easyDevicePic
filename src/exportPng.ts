@@ -2,9 +2,9 @@ import type { Viewer } from './scene';
 
 export const EXPORT_WIDTH = 2000;
 
-/** Height the export will produce for the current window shape. */
-export function exportHeightFor(viewer: Viewer, width = EXPORT_WIDTH): number {
-  const aspect = (viewer.canvas.clientWidth || 1) / (viewer.canvas.clientHeight || 1);
+/** Height the export will produce for the canvas's current shape. */
+export function exportHeightFor(canvas: HTMLCanvasElement, width = EXPORT_WIDTH): number {
+  const aspect = (canvas.clientWidth || 1) / (canvas.clientHeight || 1);
   return Math.max(1, Math.round(width / aspect));
 }
 
@@ -27,7 +27,7 @@ export async function downloadScenePng(
   const { renderer, camera, canvas } = viewer;
   const displayWidth = canvas.clientWidth || 1;
   const displayHeight = canvas.clientHeight || 1;
-  const height = exportHeightFor(viewer, width);
+  const height = exportHeightFor(canvas, width);
   const previousPixelRatio = renderer.getPixelRatio();
 
   try {
