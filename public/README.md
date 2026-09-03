@@ -3,10 +3,16 @@
 Drop the supplied files here — nothing else needs to change.
 
 ```
-public/models/phone.glb          default device
-public/models/laptop.glb         second device (optional)
-public/textures/placeholder.png  picture shown on first load
+public/models/phone.glb                  default device
+public/models/laptop.glb                 second device (optional)
+public/textures/phone-placeholder.png    picture shown on the phone
+public/textures/laptop-placeholder.png   picture shown on the laptop
 ```
+
+Each device has its own placeholder, since a phone and a laptop screen have
+very different aspect ratios. The paths come from `placeholderImageUrl` in
+[`src/models.ts`](../src/models.ts). Once you drop in a picture of your own it
+stays on screen when you switch device — placeholders only fill in until then.
 
 ## Screen mesh convention
 

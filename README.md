@@ -16,10 +16,14 @@ npm run dev
 Then add the assets — the app needs them to show anything:
 
 ```
-public/models/phone.glb          default device
-public/models/laptop.glb         second device (optional)
-public/textures/placeholder.png  picture shown on first load
+public/models/phone.glb                  default device
+public/models/laptop.glb                 second device (optional)
+public/textures/phone-placeholder.png    picture shown on the phone
+public/textures/laptop-placeholder.png   picture shown on the laptop
 ```
+
+Each device carries its own placeholder (`placeholderImageUrl` in
+`src/models.ts`) because screen aspect ratios differ so much between them.
 
 See [`public/README.md`](public/README.md) for the screen-mesh naming
 convention each `.glb` must follow.

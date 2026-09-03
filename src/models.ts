@@ -10,6 +10,11 @@ export type ModelConfig = {
    */
   screenName: string;
   /**
+   * Picture shown until the user supplies one. Per-model, because a phone and
+   * a laptop screen have very different aspect ratios.
+   */
+  placeholderImageUrl: string;
+  /**
    * Width / height of the screen image area. Normally derived from the screen
    * mesh's bounding box; set this when the model's UVs don't match its
    * geometry (e.g. a screen mesh with padding baked into the UV island).
@@ -18,13 +23,23 @@ export type ModelConfig = {
 };
 
 export const MODELS: ModelConfig[] = [
-  { id: 'phone', label: 'Phone', url: 'models/phone.glb', screenName: 'Screen' },
-  { id: 'laptop', label: 'Laptop', url: 'models/laptop.glb', screenName: 'Screen' },
+  {
+    id: "phone",
+    label: "Phone",
+    url: "models/phone.glb",
+    screenName: "Screen",
+    placeholderImageUrl: "textures/9_20_placeholder.png",
+  },
+  {
+    id: "laptop",
+    label: "Laptop",
+    url: "models/laptop.glb",
+    screenName: "Screen",
+    placeholderImageUrl: "textures/fhd_placeholder.png",
+  },
 ];
 
-export const DEFAULT_MODEL_ID = 'phone';
-
-export const PLACEHOLDER_IMAGE_URL = 'textures/placeholder.png';
+export const DEFAULT_MODEL_ID = "phone";
 
 export function getModel(id: string): ModelConfig {
   const model = MODELS.find((m) => m.id === id);

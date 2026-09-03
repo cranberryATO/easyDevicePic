@@ -1,7 +1,7 @@
 import './style.css';
 import { createViewer } from './scene';
 import { disposeDevice, loadDevice, type Device } from './device';
-import { DEFAULT_MODEL_ID, MODELS, PLACEHOLDER_IMAGE_URL, getModel } from './models';
+import { DEFAULT_MODEL_ID, MODELS, getModel } from './models';
 import {
   createScreenTexture,
   isFitMode,
@@ -37,6 +37,8 @@ const viewer = createViewer(canvas);
 
 let device: Device | null = null;
 let picture: ImageBitmap | null = null;
+/** While true, changing device swaps in that device's own placeholder. */
+let showingPlaceholder = true;
 let fit: FitMode = 'stretch';
 
 const rotation = createRotationController({
@@ -71,6 +73,7 @@ async function setPicture(source: Blob) {
     const next = await loadImageFromBlob(source);
     picture?.close();
     picture = next;
+    showingPlaceholder = false;
     errors.clear();
     applyPicture();
   } catch (error) {
@@ -79,10 +82,19 @@ async function setPicture(source: Blob) {
 }
 
 async function setModel(id: string) {
+  const config = getModel(id);
   modelSelect.disabled = true;
   downloadButton.disabled = true;
+
+  // Fetch this device's placeholder alongside its model — but only while the
+  // user hasn't supplied a picture, since theirs survives a device change.
+  const placeholder = showingPlaceholder ? loadImageFromUrl(config.placeholderImageUrl) : null;
+  // Claim the rejection now so a placeholder 404 can't surface as an unhandled
+  // rejection when the model itself fails first.
+  placeholder?.catch(() => undefined);
+
   try {
-    const next = await loadDevice(getModel(id));
+    const next = await loadDevice(config);
     if (device) {
       viewer.pivot.remove(device.root);
       disposeDevice(device);
@@ -90,15 +102,33 @@ async function setModel(id: string) {
     device = next;
     viewer.pivot.add(device.root);
     viewer.frameRadius(device.radius);
-    applyPicture();
     errors.clear();
     downloadButton.disabled = false;
   } catch (error) {
     errors.show(error);
+    return;
   } finally {
     modelSelect.disabled = false;
     modelSelect.value = device ? id : modelSelect.value;
   }
+
+  if (placeholder) {
+    try {
+      const image = await placeholder;
+      picture?.close();
+      picture = image;
+    } catch (error) {
+      errors.show(
+        new Error(
+          `Loaded ${config.label}, but its placeholder image is missing.\n` +
+            `Expected public/${config.placeholderImageUrl} — ${
+              error instanceof Error ? error.message : String(error)
+            }`,
+        ),
+      );
+    }
+  }
+  applyPicture();
 }
 
 function updateExportSizeLabel() {
@@ -162,23 +192,4 @@ syncSliders(rotation.get());
 
 // --- boot -----------------------------------------------------------------
 
-void (async () => {
-  // The placeholder and the model load in parallel; whichever lands second
-  // triggers the first render with both in place.
-  const [placeholder] = await Promise.allSettled([
-    loadImageFromUrl(PLACEHOLDER_IMAGE_URL),
-    setModel(DEFAULT_MODEL_ID),
-  ]);
-
-  if (placeholder.status === 'fulfilled') {
-    picture = placeholder.value;
-    applyPicture();
-  } else {
-    errors.show(
-      new Error(
-        `Could not load the placeholder image from public/${PLACEHOLDER_IMAGE_URL} — ` +
-          `${placeholder.reason}`,
-      ),
-    );
-  }
-})();
+void setModel(DEFAULT_MODEL_ID);
