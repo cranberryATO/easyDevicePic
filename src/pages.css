@@ -45,6 +45,34 @@ body {
   text-decoration: underline;
 }
 
+.lang-switch--page {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.lang-switch--page a,
+.lang-switch--page span {
+  padding: 2px 6px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.lang-switch--page a:hover {
+  color: var(--text);
+}
+
+.lang-switch--page .is-active {
+  color: var(--text);
+  border-color: var(--panel-border);
+  background: var(--panel);
+}
+
 h1 {
   margin: 32px 0 8px;
   font-size: 28px;

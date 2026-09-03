@@ -7,7 +7,9 @@ export default defineConfig({
       input: {
         main: 'index.html',
         about: 'about.html',
+        aPropos: 'a-propos.html',
         privacy: 'privacy.html',
+        confidentialite: 'confidentialite.html',
         legal: 'mentions-legales.html',
       },
     },

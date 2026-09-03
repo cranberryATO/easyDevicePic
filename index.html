@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Both are replaced at runtime by i18n.applyTranslations(). -->
     <title>easyDevicePic — put your screenshot on a 3D phone or laptop</title>
     <meta
       name="description"
       content="Drop a screenshot onto a 3D phone or laptop, rotate it to any angle, and download the render as a PNG with a transparent background. Runs entirely in your browser — nothing is uploaded."
     />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='9' y='3' width='14' height='26' rx='3' fill='%234f8cff'/%3E%3Crect x='11' y='6' width='10' height='20' rx='1' fill='%2314161a'/%3E%3C/svg%3E"
@@ -17,7 +19,9 @@
     <canvas id="scene"></canvas>
 
     <div id="drop-overlay" hidden>
-      <div class="drop-overlay__inner">Drop an image to map it onto the screen</div>
+      <div class="drop-overlay__inner" data-i18n="drop.overlay">
+        Drop an image to map it onto the screen
+      </div>
     </div>
 
     <div id="error" class="error" hidden></div>
@@ -26,43 +30,59 @@
       <header class="panel__header">
         <h1 class="panel__title">easyDevicePic</h1>
         <p class="panel__byline">
-          by <a href="/about.html">André Tousch</a> — Conseil et développement logiciel
+          <span data-i18n="app.byline.prefix">by</span>
+          <a id="byline-link" href="/about.html">André Tousch</a> —
+          <span data-i18n="app.byline.role">Conseil et développement logiciel</span>
         </p>
-        <p class="visually-hidden">
+        <p class="visually-hidden" data-i18n="app.intro">
           easyDevicePic maps your screenshot onto a 3D phone or laptop model, lets you rotate the
           device to any angle with the mouse or with precise X/Y/Z sliders, and exports the result
-          as a 2000&nbsp;px-wide PNG with a fully transparent background — ready to drop into a
-          landing page, a slide deck or an app-store listing. Everything runs in your browser:
-          your images are never uploaded to a server.
+          as a 2000 px-wide PNG with a fully transparent background — ready to drop into a landing
+          page, a slide deck or an app-store listing. Everything runs in your browser: your images
+          are never uploaded to a server.
         </p>
       </header>
 
       <section class="field">
-        <label class="field__label" for="model">Device</label>
+        <label class="field__label" for="model" data-i18n="field.device">Device</label>
         <select id="model"></select>
       </section>
 
       <section class="field">
-        <span class="field__label">Picture</span>
-        <button id="pick" type="button" class="button">Choose image…</button>
+        <span class="field__label" data-i18n="field.picture">Picture</span>
+        <button id="pick" type="button" class="button" data-i18n="picture.choose">
+          Choose image…
+        </button>
         <input id="file" type="file" accept="image/*" hidden />
         <p class="hint">
-          <span class="hint__drag">…or drag &amp; drop one anywhere on the page.</span>
-          <span class="hint__tap">Pick a photo from your library or take one.</span>
+          <span class="hint__drag" data-i18n="picture.hint.drag">
+            …or drag &amp; drop one anywhere on the page.
+          </span>
+          <span class="hint__tap" data-i18n="picture.hint.tap">
+            Pick a photo from your library or take one.
+          </span>
         </p>
       </section>
 
       <section class="field">
-        <span class="field__label">Fit</span>
-        <div class="segmented" id="fit" role="group" aria-label="Fit mode">
-          <button type="button" data-fit="stretch" class="is-active">Stretch</button>
-          <button type="button" data-fit="cover">Cover</button>
-          <button type="button" data-fit="contain">Contain</button>
+        <span class="field__label" data-i18n="field.fit">Fit</span>
+        <div
+          class="segmented"
+          id="fit"
+          role="group"
+          aria-label="Fit mode"
+          data-i18n-attr="aria-label:fit.legend"
+        >
+          <button type="button" data-fit="stretch" class="is-active" data-i18n="fit.stretch">
+            Stretch
+          </button>
+          <button type="button" data-fit="cover" data-i18n="fit.cover">Cover</button>
+          <button type="button" data-fit="contain" data-i18n="fit.contain">Contain</button>
         </div>
       </section>
 
       <section class="field">
-        <span class="field__label">Rotation</span>
+        <span class="field__label" data-i18n="field.rotation">Rotation</span>
         <div class="slider">
           <label for="rot-x">X</label>
           <input id="rot-x" type="range" min="-90" max="90" step="1" value="0" />
@@ -78,21 +98,33 @@
           <input id="rot-z" type="range" min="-180" max="180" step="1" value="0" />
           <output id="rot-z-out">0°</output>
         </div>
-        <button id="reset" type="button" class="button button--subtle">Reset rotation</button>
+        <button id="reset" type="button" class="button button--subtle" data-i18n="rotation.reset">
+          Reset rotation
+        </button>
       </section>
 
-      <button id="download" type="button" class="button button--primary">Download PNG</button>
+      <button
+        id="download"
+        type="button"
+        class="button button--primary"
+        data-i18n="export.download"
+      >
+        Download PNG
+      </button>
       <p class="hint" id="export-size"></p>
-      <p class="hint hint--privacy">
+      <p class="hint hint--privacy" data-i18n="export.privacy">
         Runs entirely in your browser. Your images are never uploaded.
       </p>
 
       <footer class="panel__footer">
-        <a href="/about.html">About</a>
+        <a id="link-about" href="/about.html" data-i18n="nav.about">About</a>
         <span aria-hidden="true">·</span>
-        <a href="/privacy.html">Privacy</a>
+        <a id="link-privacy" href="/privacy.html" data-i18n="nav.privacy">Privacy</a>
         <span aria-hidden="true">·</span>
-        <a href="/mentions-legales.html">Mentions légales</a>
+        <a id="link-legal" href="/mentions-legales.html" data-i18n="nav.legal">Mentions légales</a>
+
+        <span class="lang-switch" id="lang-switch" role="group" aria-label="Language"
+          data-i18n-attr="aria-label:nav.language"></span>
       </footer>
     </aside>
 

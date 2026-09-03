@@ -126,6 +126,40 @@ body {
   font-size: 11px;
 }
 
+/* Its own right-aligned row: the three link labels rarely fit on one line in a
+   280px panel, and sharing a wrapped row with them reads as ragged. */
+.lang-switch {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: flex-end;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.lang-switch button {
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+
+.lang-switch button:hover {
+  color: var(--text);
+}
+
+.lang-switch button.is-active {
+  color: var(--text);
+  border-color: var(--panel-border);
+  background: #262a31;
+  cursor: default;
+}
+
 .field {
   display: flex;
   flex-direction: column;

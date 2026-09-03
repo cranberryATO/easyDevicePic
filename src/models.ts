@@ -1,6 +1,7 @@
 export type ModelConfig = {
   id: string;
-  label: string;
+  /** i18n key for the name shown in the device dropdown. */
+  labelKey: string;
   /** Path under public/, resolved relative to the site root. */
   url: string;
   /**
@@ -25,14 +26,14 @@ export type ModelConfig = {
 export const MODELS: ModelConfig[] = [
   {
     id: "phone",
-    label: "Phone",
+    labelKey: "model.phone",
     url: "models/phone.glb",
     screenName: "Screen",
     placeholderImageUrl: "textures/9_20_placeholder.png",
   },
   {
     id: "laptop",
-    label: "Laptop",
+    labelKey: "model.laptop",
     url: "models/laptop.glb",
     screenName: "Screen",
     placeholderImageUrl: "textures/fhd_placeholder.png",

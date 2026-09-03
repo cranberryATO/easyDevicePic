@@ -12,6 +12,7 @@ import {
 import { createRotationController, ROTATION_LIMITS, type RotationState } from './rotation';
 import { EXPORT_WIDTH, downloadScenePng, exportHeightFor } from './exportPng';
 import { createDropZone, createErrorBanner, createSegmentedControl, element } from './ui';
+import { LOCALES, PAGES, applyTranslations, getLocale, setLocale, t } from './i18n';
 
 const canvas = element<HTMLCanvasElement>('scene');
 const modelSelect = element<HTMLSelectElement>('model');
@@ -21,6 +22,11 @@ const resetButton = element<HTMLButtonElement>('reset');
 const downloadButton = element<HTMLButtonElement>('download');
 const exportSizeLabel = element('export-size');
 const errors = createErrorBanner(element('error'));
+const langSwitch = element('lang-switch');
+const bylineLink = element<HTMLAnchorElement>('byline-link');
+const aboutLink = element<HTMLAnchorElement>('link-about');
+const privacyLink = element<HTMLAnchorElement>('link-privacy');
+const legalLink = element<HTMLAnchorElement>('link-legal');
 
 const sliders: Record<keyof RotationState, HTMLInputElement> = {
   x: element<HTMLInputElement>('rot-x'),
@@ -120,7 +126,7 @@ async function setModel(id: string) {
     } catch (error) {
       errors.show(
         new Error(
-          `Loaded ${config.label}, but its placeholder image is missing.\n` +
+          `Loaded ${config.id}, but its placeholder image is missing.\n` +
             `Expected public/${config.placeholderImageUrl} — ${
               error instanceof Error ? error.message : String(error)
             }`,
@@ -132,7 +138,53 @@ async function setModel(id: string) {
 }
 
 function updateExportSizeLabel() {
-  exportSizeLabel.textContent = `${EXPORT_WIDTH} × ${exportHeightFor(canvas)} px, transparent background`;
+  exportSizeLabel.textContent = t('export.size', {
+    width: EXPORT_WIDTH,
+    height: exportHeightFor(canvas),
+  });
+}
+
+// --- localization ---------------------------------------------------------
+
+/**
+ * Re-renders everything language-dependent in place. Deliberately not a page
+ * reload: that would throw away the picture the user loaded and their rotation.
+ */
+function applyLocale() {
+  applyTranslations();
+
+  // Option labels and the export string are built in JS, so the DOM walk in
+  // applyTranslations() can't reach them.
+  for (const option of modelSelect.options) {
+    const model = MODELS.find((candidate) => candidate.id === option.value);
+    if (model) option.textContent = t(model.labelKey);
+  }
+  updateExportSizeLabel();
+
+  const pages = PAGES[getLocale()];
+  bylineLink.href = pages.about;
+  aboutLink.href = pages.about;
+  privacyLink.href = pages.privacy;
+  legalLink.href = pages.legal;
+
+  renderLanguageSwitch();
+}
+
+function renderLanguageSwitch() {
+  langSwitch.replaceChildren();
+  for (const locale of LOCALES) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = locale.toUpperCase();
+    button.className = locale === getLocale() ? 'is-active' : '';
+    button.setAttribute('aria-pressed', String(locale === getLocale()));
+    button.addEventListener('click', () => {
+      if (locale === getLocale()) return;
+      setLocale(locale);
+      applyLocale();
+    });
+    langSwitch.append(button);
+  }
 }
 
 // --- wiring ---------------------------------------------------------------
@@ -140,7 +192,7 @@ function updateExportSizeLabel() {
 for (const model of MODELS) {
   const option = document.createElement('option');
   option.value = model.id;
-  option.textContent = model.label;
+  option.textContent = t(model.labelKey);
   modelSelect.append(option);
 }
 modelSelect.value = DEFAULT_MODEL_ID;
@@ -186,7 +238,7 @@ downloadButton.addEventListener('click', async () => {
   }
 });
 
-updateExportSizeLabel();
+applyLocale();
 syncSliders(rotation.get());
 
 // --- boot -----------------------------------------------------------------

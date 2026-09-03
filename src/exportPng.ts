@@ -1,3 +1,4 @@
+import { t } from './i18n';
 import type { Viewer } from './scene';
 
 export const EXPORT_WIDTH = 2000;
@@ -40,7 +41,7 @@ export async function downloadScenePng(
     const blob = await new Promise<Blob | null>((resolve) =>
       canvas.toBlob(resolve, 'image/png'),
     );
-    if (!blob) throw new Error('The browser could not encode the render as a PNG.');
+    if (!blob) throw new Error(t('export.failed'));
 
     triggerDownload(blob, filename);
   } finally {

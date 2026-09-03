@@ -1,3 +1,5 @@
+import { t } from './i18n';
+
 export function element<T extends HTMLElement>(id: string): T {
   const found = document.getElementById(id);
   if (!found) throw new Error(`Missing element #${id} in index.html`);
@@ -62,7 +64,7 @@ export function createDropZone(options: {
     const file = event.dataTransfer?.files?.[0];
     if (!file) return;
     if (!file.type.startsWith('image/')) {
-      onReject(`"${file.name}" is not an image — drop a PNG, JPG, WebP or GIF.`);
+      onReject(t('drop.notAnImage', { name: file.name }));
       return;
     }
     onFile(file);
