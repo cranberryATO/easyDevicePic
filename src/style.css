@@ -1,12 +1,4 @@
-:root {
-  color-scheme: dark;
-  --bg: #14161a;
-  --panel: #1e2127;
-  --panel-border: #2c3038;
-  --text: #e7e9ee;
-  --muted: #949aa6;
-  --accent: #4f8cff;
-}
+@import './tokens.css';
 
 * {
   box-sizing: border-box;
@@ -21,8 +13,22 @@ body {
 body {
   background: var(--bg);
   color: var(--text);
-  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font: 14px/1.45 var(--font);
   overflow: hidden;
+}
+
+/* In the DOM for search engines and screen readers, out of the visual layout
+   (and out of flex flow, so it can't disturb the mobile layouts). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* The checkerboard makes the transparent background legible while composing. */
@@ -64,11 +70,60 @@ body {
   border-radius: 12px;
 }
 
+.panel__header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .panel__title {
   margin: 0;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.01em;
+}
+
+.panel__byline {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.panel__byline a {
+  color: var(--muted);
+  text-decoration-color: var(--panel-border);
+  text-underline-offset: 2px;
+}
+
+.panel__byline a:hover {
+  color: var(--text);
+  text-decoration-color: currentColor;
+}
+
+.panel__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--panel-border);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.panel__footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.panel__footer a:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.hint--privacy {
+  font-size: 11px;
 }
 
 .field {

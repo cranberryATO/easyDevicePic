@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy — easyDevicePic</title>
+    <meta
+      name="description"
+      content="easyDevicePic processes your images entirely in your browser. Nothing is uploaded, and no account is required."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='9' y='3' width='14' height='26' rx='3' fill='%234f8cff'/%3E%3Crect x='11' y='6' width='10' height='20' rx='1' fill='%2314161a'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="/src/pages.css" />
+  </head>
+  <body>
+    <main class="page">
+      <nav class="page__nav">
+        <a class="page__brand" href="/">easyDevicePic</a>
+        <a class="page__back" href="/">← Back to the app</a>
+      </nav>
+
+      <h1>Privacy</h1>
+      <p class="lede">
+        Your images are processed entirely inside your browser. They are never uploaded, stored, or
+        seen by anyone else.
+      </p>
+
+      <h2>What happens to the pictures you add</h2>
+      <p>
+        When you drop in a picture or pick one from your device, the browser decodes it locally,
+        draws it onto the 3D model, and renders the result on your own machine. Downloading the PNG
+        writes a file straight from the browser to your device.
+      </p>
+      <p>
+        At no point is the image sent over the network. There is no upload endpoint, no image
+        storage, and no processing server — closing the tab discards everything.
+      </p>
+
+      <h2>What the site loads</h2>
+      <p>
+        Only its own files: the page itself, the 3D models, and the placeholder images. There are no
+        third-party scripts, no external fonts, and no embedded trackers.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>This site sets no cookies and uses no browser storage.</p>
+
+      <h2>Analytics</h2>
+      <p class="todo">
+        Currently none. If you add analytics, say which tool, what it records, and whether it's
+        configured to run without consent (CNIL exemption) — otherwise you also need a consent
+        banner, and this section has to change.
+      </p>
+
+      <h2>Server logs</h2>
+      <p class="todo">
+        Your host almost certainly logs IP addresses and user agents for every request. Name the
+        host, say what it retains and for how long. This is the part most "we collect nothing"
+        policies get wrong.
+      </p>
+
+      <h2>Your rights</h2>
+      <p class="todo">
+        Under the GDPR: access, rectification, erasure, objection, and the right to complain to the
+        CNIL. Since no personal data is collected through the tool itself, this mostly concerns
+        server logs and anything sent to you by email. Give the contact address for such requests.
+      </p>
+
+      <h2>Contact</h2>
+      <p class="todo">Email address for privacy questions, and the date this policy was last updated.</p>
+
+      <footer class="page__footer">
+        <a href="/">The app</a>
+        <span aria-hidden="true">·</span>
+        <a href="/about.html">About</a>
+        <span aria-hidden="true">·</span>
+        <a href="/mentions-legales.html">Mentions légales</a>
+      </footer>
+    </main>
+  </body>
+</html>

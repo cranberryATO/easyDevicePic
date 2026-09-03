@@ -1,0 +1,151 @@
+@import './tokens.css';
+
+/* Content pages: a plain readable column. Deliberately separate from the app's
+   stylesheet, which sets overflow:hidden and a full-viewport layout. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0 20px;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 var(--font);
+}
+
+.page {
+  max-width: 68ch;
+  margin: 0 auto;
+  padding: 32px 0 64px;
+}
+
+.page__nav {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--panel-border);
+  font-size: 14px;
+}
+
+.page__brand {
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.page__back {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.page__back:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  margin: 32px 0 8px;
+  font-size: 28px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  margin: 36px 0 8px;
+  font-size: 18px;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 16px;
+}
+
+ul,
+ol {
+  padding-left: 22px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+a {
+  color: var(--accent);
+}
+
+.lede {
+  font-size: 18px;
+  color: var(--muted);
+}
+
+dl {
+  margin: 0 0 16px;
+  display: grid;
+  grid-template-columns: minmax(140px, auto) 1fr;
+  gap: 6px 20px;
+}
+
+dt {
+  color: var(--muted);
+}
+
+dd {
+  margin: 0;
+}
+
+/* Marks text that still has to be written. Loud on purpose — remove the class
+   (and this rule's targets) as each section is filled in. */
+.todo {
+  padding: 12px 14px;
+  margin: 0 0 16px;
+  background: #3a2f1d;
+  border: 1px solid #6b552f;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #f0e2c4;
+}
+
+.todo::before {
+  content: "TO WRITE — ";
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.page__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--panel-border);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.page__footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.page__footer a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  dl {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  dt {
+    margin-top: 10px;
+  }
+}

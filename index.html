@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>easyDevicePic</title>
+    <title>easyDevicePic — put your screenshot on a 3D phone or laptop</title>
+    <meta
+      name="description"
+      content="Drop a screenshot onto a 3D phone or laptop, rotate it to any angle, and download the render as a PNG with a transparent background. Runs entirely in your browser — nothing is uploaded."
+    />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='9' y='3' width='14' height='26' rx='3' fill='%234f8cff'/%3E%3Crect x='11' y='6' width='10' height='20' rx='1' fill='%2314161a'/%3E%3C/svg%3E"
@@ -19,7 +23,19 @@
     <div id="error" class="error" hidden></div>
 
     <aside class="panel">
-      <h1 class="panel__title">easyDevicePic</h1>
+      <header class="panel__header">
+        <h1 class="panel__title">easyDevicePic</h1>
+        <p class="panel__byline">
+          by <a href="/about.html">André Tousch</a> — Conseil et développement logiciel
+        </p>
+        <p class="visually-hidden">
+          easyDevicePic maps your screenshot onto a 3D phone or laptop model, lets you rotate the
+          device to any angle with the mouse or with precise X/Y/Z sliders, and exports the result
+          as a 2000&nbsp;px-wide PNG with a fully transparent background — ready to drop into a
+          landing page, a slide deck or an app-store listing. Everything runs in your browser:
+          your images are never uploaded to a server.
+        </p>
+      </header>
 
       <section class="field">
         <label class="field__label" for="model">Device</label>
@@ -67,6 +83,17 @@
 
       <button id="download" type="button" class="button button--primary">Download PNG</button>
       <p class="hint" id="export-size"></p>
+      <p class="hint hint--privacy">
+        Runs entirely in your browser. Your images are never uploaded.
+      </p>
+
+      <footer class="panel__footer">
+        <a href="/about.html">About</a>
+        <span aria-hidden="true">·</span>
+        <a href="/privacy.html">Privacy</a>
+        <span aria-hidden="true">·</span>
+        <a href="/mentions-legales.html">Mentions légales</a>
+      </footer>
     </aside>
 
     <script type="module" src="/src/main.ts"></script>

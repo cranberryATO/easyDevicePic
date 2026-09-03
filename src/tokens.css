@@ -1,0 +1,11 @@
+/* Shared by the app (style.css) and the content pages (pages.css). */
+:root {
+  color-scheme: dark;
+  --bg: #14161a;
+  --panel: #1e2127;
+  --panel-border: #2c3038;
+  --text: #e7e9ee;
+  --muted: #949aa6;
+  --accent: #4f8cff;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
