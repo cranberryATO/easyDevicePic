@@ -1,6 +1,8 @@
 # Assets
 
-Drop the supplied files here — nothing else needs to change.
+> **Licence** — everything in this directory is CC BY-NC 4.0, _not_ GPL like the
+> rest of the repository. See [`LICENSE-ASSETS.md`](../LICENSE-ASSETS.md).
+> Renders produced with the app are exempt and free to use commercially.
 
 ```
 public/models/phone.glb                  default device

@@ -28,19 +28,19 @@ Each device carries its own placeholder (`placeholderImageUrl` in
 See [`public/README.md`](public/README.md) for the screen-mesh naming
 convention each `.glb` must follow.
 
-| Script | |
-| --- | --- |
-| `npm run dev` | dev server with hot reload |
-| `npm run build` | typecheck, then build to `dist/` |
-| `npm run preview` | serve the production build |
-| `npm run typecheck` | types only |
+| Script              |                                  |
+| ------------------- | -------------------------------- |
+| `npm run dev`       | dev server with hot reload       |
+| `npm run build`     | typecheck, then build to `dist/` |
+| `npm run preview`   | serve the production build       |
+| `npm run typecheck` | types only                       |
 
 ## Using it
 
 - **Change the picture** — drag & drop an image anywhere on the page, or use
-  *Choose image…*. The screen texture updates immediately.
-- **Fit** — *Stretch* (default) fills the screen regardless of aspect ratio;
-  *Cover* crops to fill; *Contain* fits the whole picture with black bars.
+  _Choose image…_. The screen texture updates immediately.
+- **Fit** — _Stretch_ (default) fills the screen regardless of aspect ratio;
+  _Cover_ crops to fill; _Contain_ fits the whole picture with black bars.
 - **Rotate** — drag the model, or set the X/Y/Z angles with the sliders. Both
   write the same state, so they always agree. Scroll to zoom.
 - **Download PNG** — exports at a fixed **2000px** width, with the height
@@ -51,15 +51,15 @@ convention each `.glb` must follow.
 
 `src/` is small and each file does one thing:
 
-| File | |
-| --- | --- |
-| `scene.ts` | renderer, camera, lighting, render-on-demand loop |
-| `device.ts` | GLTF loading, screen-mesh lookup, material swap |
-| `screenTexture.ts` | image → canvas → texture, with the three fit modes |
-| `rotation.ts` | the single rotation state that drag and sliders share |
-| `exportPng.ts` | fixed-resolution transparent PNG render |
-| `models.ts` | the device registry |
-| `ui.ts` / `main.ts` | DOM helpers and wiring |
+| File                |                                                       |
+| ------------------- | ----------------------------------------------------- |
+| `scene.ts`          | renderer, camera, lighting, render-on-demand loop     |
+| `device.ts`         | GLTF loading, screen-mesh lookup, material swap       |
+| `screenTexture.ts`  | image → canvas → texture, with the three fit modes    |
+| `rotation.ts`       | the single rotation state that drag and sliders share |
+| `exportPng.ts`      | fixed-resolution transparent PNG render               |
+| `models.ts`         | the device registry                                   |
+| `ui.ts` / `main.ts` | DOM helpers and wiring                                |
 
 A few decisions worth knowing about if you change things:
 
@@ -76,3 +76,16 @@ A few decisions worth knowing about if you change things:
 - **Export** resizes the canvas in place with `updateStyle: false` and reads it
   back with `toBlob`, which lets the browser un-premultiply the alpha — that is
   what keeps the device edges free of a dark fringe.
+
+## Licence
+
+Two licences, because the code and the models are not the same kind of work:
+
+|                     |                                                         |
+| ------------------- | ------------------------------------------------------- |
+| Source code         | GNU GPL v3.0 or later — [`LICENSE`](LICENSE)            |
+| Assets in `public/` | CC BY-NC 4.0 — [`LICENSE-ASSETS.md`](LICENSE-ASSETS.md) |
+
+**Renders are exempt from both.** Any image you produce with easyDevicePic is
+yours to use for any purpose, commercial included, with no attribution — see
+the _Additional permission_ clause in [`LICENSE-ASSETS.md`](LICENSE-ASSETS.md).

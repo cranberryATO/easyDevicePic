@@ -8,9 +8,17 @@
       name="description"
       content="easyDevicePic traite vos images entièrement dans votre navigateur. Rien n'est envoyé, aucun compte n'est nécessaire."
     />
-    <link rel="alternate" hreflang="fr" href="%VITE_SITE_URL%/confidentialite.html" />
+    <link
+      rel="alternate"
+      hreflang="fr"
+      href="%VITE_SITE_URL%/confidentialite.html"
+    />
     <link rel="alternate" hreflang="en" href="%VITE_SITE_URL%/privacy.html" />
-    <link rel="alternate" hreflang="x-default" href="%VITE_SITE_URL%/privacy.html" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="%VITE_SITE_URL%/privacy.html"
+    />
     <link rel="canonical" href="%VITE_SITE_URL%/confidentialite.html" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/src/pages.css" />
@@ -18,8 +26,8 @@
   <body>
     <main class="page">
       <nav class="page__nav">
-        <a class="page__brand" href="/">easyDevicePic</a>
-        <a class="page__back" href="/">← Retour à l'application</a>
+        <a class="page__brand" href="/?lang=fr">easyDevicePic</a>
+        <a class="page__back" href="/?lang=fr">← Retour à l'application</a>
         <span class="lang-switch lang-switch--page">
           <a href="/privacy.html">EN</a>
           <span class="is-active" aria-current="page">FR</span>
@@ -28,64 +36,114 @@
 
       <h1>Confidentialité</h1>
       <p class="lede">
-        Vos images sont traitées entièrement dans votre navigateur. Elles ne sont jamais envoyées,
-        ni stockées, ni vues par qui que ce soit d'autre.
+        Vos images sont traitées entièrement dans votre navigateur. Elles ne
+        sont jamais envoyées, ni stockées, ni vues par qui que ce soit d'autre.
+      </p>
+
+      <h2>Responsable du traitement</h2>
+      <p>
+        André Tousch, éditeur du site (voir les
+        <a href="/mentions-legales.html">mentions légales</a>). Pour toute
+        question relative à vos données&nbsp;:
+        <a href="mailto:andre@andretousch.com">andre@andretousch.com</a>.
       </p>
 
       <h2>Ce que deviennent les images que vous ajoutez</h2>
       <p>
-        Lorsque vous déposez une image ou en choisissez une depuis votre appareil, le navigateur la
-        décode localement, l'applique sur le modèle 3D et calcule le rendu sur votre propre machine.
-        Le téléchargement du PNG écrit un fichier directement depuis le navigateur vers votre
+        Lorsque vous déposez une image ou en choisissez une depuis votre
+        appareil, le navigateur la décode localement, l'applique sur le modèle
+        3D et calcule le rendu sur votre propre machine. Le téléchargement du
+        PNG écrit un fichier directement depuis le navigateur vers votre
         appareil.
       </p>
       <p>
-        À aucun moment l'image ne transite par le réseau. Il n'y a ni point d'envoi, ni stockage
-        d'images, ni serveur de traitement — fermer l'onglet efface tout.
+        À aucun moment l'image ne transite par le réseau. Il n'y a ni point
+        d'envoi, ni stockage d'images, ni serveur de traitement — fermer
+        l'onglet efface tout.
       </p>
 
       <h2>Ce que le site charge</h2>
       <p>
-        Uniquement ses propres fichiers : la page elle-même, les modèles 3D et les images
-        d'exemple. Aucun script tiers, aucune police externe, aucun traceur intégré.
+        Uniquement ses propres fichiers&nbsp;: la page elle-même, les modèles 3D
+        et les images d'exemple. Aucun script tiers, aucun réseau de diffusion
+        externe, aucune police distante — l'affichage utilise les polices déjà
+        installées sur votre système — et aucun traceur intégré.
       </p>
 
       <h2>Cookies</h2>
       <p>
-        Ce site ne dépose aucun cookie. Votre choix de langue est conservé dans le stockage local de
-        votre navigateur, uniquement sur votre appareil.
+        Ce site ne dépose aucun cookie. Votre choix de langue est conservé dans
+        le stockage local de votre navigateur, uniquement sur votre
+        appareil&nbsp;: il sert seulement à vous réafficher le site dans la
+        langue que vous avez choisie, ne permet aucun suivi, et n'est jamais lu
+        par un serveur. Vous pouvez l'effacer à tout moment en vidant les
+        données de site de votre navigateur. Aucun bandeau de consentement n'est
+        nécessaire pour ce seul usage.
       </p>
 
-      <h2>Mesure d'audience</h2>
-      <p class="todo">
-        Aucune pour l'instant. Si vous ajoutez un outil de mesure, indiquez lequel, ce qu'il
-        enregistre, et s'il est configuré pour fonctionner sans consentement (exemption CNIL) —
-        sinon il faut aussi un bandeau de consentement, et cette section doit être modifiée.
+      <h2>Journaux du serveur</h2>
+      <p>
+        Le serveur enregistre automatiquement, pour chaque requête&nbsp;:
+        l'adresse IP, la date et l'heure, le fichier demandé, le code de réponse
+        et le volume transféré, le type de navigateur (<i>user agent</i>) et, le
+        cas échéant, la page d'origine du lien suivi.
+      </p>
+      <p>
+        Ces journaux servent à assurer la sécurité du site, à détecter les abus,
+        mesurer l'audience et à diagnostiquer les pannes. La base légale est
+        l'intérêt légitime de l'éditeur à assurer le bon fonctionnement et la
+        sécurité de son service (article 6.1.f du RGPD). Ils sont conservés six
+        mois au maximum — la rotation configurée sur le serveur les supprimant
+        automatiquement passé ce délai —, ne sont transmis à personne, sauf
+        réquisition judiciaire, et ne servent ni au profilage ni à la publicité.
       </p>
 
-      <h2>Journaux serveur</h2>
-      <p class="todo">
-        Votre hébergeur enregistre très probablement les adresses IP et les user agents de chaque
-        requête. Nommez l'hébergeur, précisez ce qu'il conserve et pendant combien de temps. C'est
-        le point que les politiques « nous ne collectons rien » oublient le plus souvent.
+      <h2>Si vous nous écrivez</h2>
+      <p>
+        Lorsque vous envoyez un email, votre adresse et le contenu de votre
+        message sont conservés le temps de traiter votre demande et, s'il y a
+        lieu, la relation qui en découle — au plus trois ans après notre dernier
+        échange. La base légale est l'exécution de mesures précontractuelles à
+        votre demande, ou l'intérêt légitime à répondre aux messages reçus.
       </p>
 
       <h2>Vos droits</h2>
-      <p class="todo">
-        Au titre du RGPD : accès, rectification, effacement, opposition, et droit de réclamation
-        auprès de la CNIL. Aucune donnée personnelle n'étant collectée par l'outil lui-même, cela
-        concerne surtout les journaux serveur et les échanges par email. Indiquez l'adresse de
-        contact pour ces demandes.
+      <p>
+        Vous disposez d'un droit d'accès, de rectification, d'effacement, de
+        limitation, d'opposition et de portabilité sur vos données, ainsi que du
+        droit de définir des directives relatives à leur sort après votre décès.
+        Ces droits s'exercent par email à
+        <a href="mailto:andre@andretousch.com">andre@andretousch.com</a>&nbsp;;
+        une réponse vous sera apportée dans un délai d'un mois.
+      </p>
+      <p>
+        L'outil lui-même ne collectant aucune donnée, ces droits portent en
+        pratique sur les journaux du serveur et sur les échanges par email. Une
+        adresse IP isolée ne permettant pas à l'éditeur de vous identifier, des
+        informations complémentaires pourront vous être demandées pour retrouver
+        les enregistrements vous concernant (article 11 du RGPD).
+      </p>
+      <p>
+        Vous pouvez également introduire une réclamation auprès de la CNIL — 3
+        place de Fontenoy, TSA 80715, 75334 Paris Cedex 07 — ou sur
+        <a href="https://www.cnil.fr">www.cnil.fr</a>.
       </p>
 
-      <h2>Contact</h2>
-      <p class="todo">
-        Adresse email pour les questions de confidentialité, et date de dernière mise à jour de
-        cette page.
+      <h2>Évolution de cette page</h2>
+      <p>
+        Cette politique peut être modifiée pour refléter une évolution du site
+        ou de la réglementation. La date ci-dessous indique la dernière version
+        en vigueur.
+      </p>
+      <p>
+        <em
+          >Dernière mise à jour&nbsp;: 4 septembre 2026. Contact&nbsp;:
+          <a href="mailto:andre@andretousch.com">andre@andretousch.com</a>.</em
+        >
       </p>
 
       <footer class="page__footer">
-        <a href="/">L'application</a>
+        <a href="/?lang=fr">L'application</a>
         <span aria-hidden="true">·</span>
         <a href="/a-propos.html">À propos</a>
         <span aria-hidden="true">·</span>

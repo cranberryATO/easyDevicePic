@@ -9,8 +9,16 @@
       content="easyDevicePic processes your images entirely in your browser. Nothing is uploaded, and no account is required."
     />
     <link rel="alternate" hreflang="en" href="%VITE_SITE_URL%/privacy.html" />
-    <link rel="alternate" hreflang="fr" href="%VITE_SITE_URL%/confidentialite.html" />
-    <link rel="alternate" hreflang="x-default" href="%VITE_SITE_URL%/privacy.html" />
+    <link
+      rel="alternate"
+      hreflang="fr"
+      href="%VITE_SITE_URL%/confidentialite.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="%VITE_SITE_URL%/privacy.html"
+    />
     <link rel="canonical" href="%VITE_SITE_URL%/privacy.html" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/src/pages.css" />
@@ -18,8 +26,8 @@
   <body>
     <main class="page">
       <nav class="page__nav">
-        <a class="page__brand" href="/">easyDevicePic</a>
-        <a class="page__back" href="/">← Back to the app</a>
+        <a class="page__brand" href="/?lang=en">easyDevicePic</a>
+        <a class="page__back" href="/?lang=en">← Back to the app</a>
         <span class="lang-switch lang-switch--page">
           <span class="is-active" aria-current="page">EN</span>
           <a href="/confidentialite.html">FR</a>
@@ -28,63 +36,115 @@
 
       <h1>Privacy</h1>
       <p class="lede">
-        Your images are processed entirely inside your browser. They are never uploaded, stored, or
-        seen by anyone else.
+        Your images are processed entirely inside your browser. They are never
+        uploaded, stored, or seen by anyone else. This page is a courtesy
+        translation — the French
+        <a href="/confidentialite.html">politique de confidentialité</a> is the
+        authoritative version.
+      </p>
+
+      <h2>Data controller</h2>
+      <p>
+        André Tousch, publisher of this site (see the
+        <a href="/legal.html">legal notice</a>). For anything concerning your
+        data: <a href="mailto:andre@andretousch.com">andre@andretousch.com</a>.
       </p>
 
       <h2>What happens to the pictures you add</h2>
       <p>
-        When you drop in a picture or pick one from your device, the browser decodes it locally,
-        draws it onto the 3D model, and renders the result on your own machine. Downloading the PNG
-        writes a file straight from the browser to your device.
+        When you drop in a picture or pick one from your device, the browser
+        decodes it locally, draws it onto the 3D model, and renders the result
+        on your own machine. Downloading the PNG writes a file straight from the
+        browser to your device.
       </p>
       <p>
-        At no point is the image sent over the network. There is no upload endpoint, no image
-        storage, and no processing server — closing the tab discards everything.
+        At no point is the image sent over the network. There is no upload
+        endpoint, no image storage, and no processing server — closing the tab
+        discards everything.
       </p>
 
       <h2>What the site loads</h2>
       <p>
-        Only its own files: the page itself, the 3D models, and the placeholder images. There are no
-        third-party scripts, no external fonts, and no embedded trackers.
+        Only its own files: the page itself, the 3D models, and the placeholder
+        images. There are no third-party scripts, no external CDN, no remote
+        fonts — the text uses the fonts already installed on your system — and
+        no embedded trackers.
       </p>
 
       <h2>Cookies</h2>
       <p>
-        This site sets no cookies. Your language choice is kept in your browser's local storage, on
-        your device only.
-      </p>
-
-      <h2>Analytics</h2>
-      <p class="todo">
-        Currently none. If you add analytics, say which tool, what it records, and whether it's
-        configured to run without consent (CNIL exemption) — otherwise you also need a consent
-        banner, and this section has to change.
+        This site sets no cookies. Your language choice is kept in your
+        browser's local storage, on your device only: it serves solely to show
+        you the site in the language you picked, allows no tracking, and is
+        never read by a server. You can clear it at any time by clearing your
+        browser's site data. No consent banner is required for this use alone.
       </p>
 
       <h2>Server logs</h2>
-      <p class="todo">
-        Your host almost certainly logs IP addresses and user agents for every request. Name the
-        host, say what it retains and for how long. This is the part most "we collect nothing"
-        policies get wrong.
+      <p>
+        The server automatically records, for each request: the IP address, the
+        date and time, the file requested, the response code and the volume
+        transferred, the browser type (<i>user agent</i>) and, where applicable,
+        the page the link was followed from.
+      </p>
+      <p>
+        These logs are used to keep the site secure, to detect abuse, to measure
+        traffic and to diagnose failures. The legal basis is the publisher's
+        legitimate interest in the security and proper operation of the service
+        (GDPR article 6(1)(f)). They are kept for six months at most — log
+        rotation on the server deletes them automatically past that point — they
+        are disclosed to no one, save a judicial request, and are used neither
+        for profiling nor for advertising.
+      </p>
+
+      <h2>If you email us</h2>
+      <p>
+        When you send an email, your address and the content of your message are
+        kept for as long as it takes to handle your request and, where relevant,
+        the relationship that follows — at most three years after our last
+        exchange. The legal basis is pre-contractual steps taken at your
+        request, or the legitimate interest in answering messages received.
       </p>
 
       <h2>Your rights</h2>
-      <p class="todo">
-        Under the GDPR: access, rectification, erasure, objection, and the right to complain to the
-        CNIL. Since no personal data is collected through the tool itself, this mostly concerns
-        server logs and anything sent to you by email. Give the contact address for such requests.
+      <p>
+        You have the right to access, rectify, erase, restrict, object to and
+        port your data, as well as to set directives on what becomes of it after
+        your death. These rights are exercised by email to
+        <a href="mailto:andre@andretousch.com">andre@andretousch.com</a>; you
+        will receive a reply within one month.
+      </p>
+      <p>
+        Since the tool itself collects nothing, these rights concern in practice
+        the server logs and email correspondence. As an IP address alone does
+        not let the publisher identify you, further information may be requested
+        in order to locate the records that relate to you (GDPR article 11).
+      </p>
+      <p>
+        You may also lodge a complaint with the CNIL, the French data protection
+        authority — 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07 — or at
+        <a href="https://www.cnil.fr">www.cnil.fr</a>.
       </p>
 
-      <h2>Contact</h2>
-      <p class="todo">Email address for privacy questions, and the date this policy was last updated.</p>
+      <h2>Changes to this page</h2>
+      <p>
+        This policy may change to reflect changes to the site or to the
+        applicable rules. The date below indicates the version currently in
+        force.
+      </p>
+      <p>
+        <em
+          >Last updated: 4 September 2026. Contact:
+          <a href="mailto:andre@andretousch.com">andre@andretousch.com</a>.</em
+        >
+      </p>
 
       <footer class="page__footer">
-        <a href="/">The app</a>
+        <a href="/?lang=en">The app</a>
         <span aria-hidden="true">·</span>
         <a href="/about.html">About</a>
         <span aria-hidden="true">·</span>
-        <a href="/mentions-legales.html">Mentions légales</a>
+        <a href="/legal.html">Legal</a>
       </footer>
     </main>
   </body>

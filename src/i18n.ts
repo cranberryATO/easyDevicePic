@@ -49,7 +49,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
 
     'nav.about': 'About',
     'nav.privacy': 'Privacy',
-    'nav.legal': 'Mentions légales',
+    'nav.legal': 'Legal',
     'nav.language': 'Language',
   },
 
@@ -102,7 +102,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
 
 /** Where each footer link points, per locale. */
 export const PAGES: Record<Locale, { about: string; privacy: string; legal: string }> = {
-  en: { about: '/about.html', privacy: '/privacy.html', legal: '/mentions-legales.html' },
+  en: { about: '/about.html', privacy: '/privacy.html', legal: '/legal.html' },
   fr: { about: '/a-propos.html', privacy: '/confidentialite.html', legal: '/mentions-legales.html' },
 };
 

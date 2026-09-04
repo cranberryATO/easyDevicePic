@@ -14,8 +14,8 @@
     "url": "git+https://github.com/cranberryATO/easyDevicePic.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "André Tousch <andre@andretousch.com>",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/cranberryATO/easyDevicePic/issues"
   },
