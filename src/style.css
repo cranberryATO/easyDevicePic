@@ -89,6 +89,19 @@ body {
   color: var(--muted);
 }
 
+/* Puts the credit — logo, name, role — on its own line under the prefix. */
+.panel__byline-prefix {
+  display: block;
+}
+
+.panel__byline-logo {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  vertical-align: -2px;
+  margin-right: 2px;
+}
+
 .panel__byline a {
   color: var(--muted);
   text-decoration-color: var(--panel-border);

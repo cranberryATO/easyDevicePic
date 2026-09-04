@@ -14,7 +14,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'meta.description':
       'Drop a screenshot onto a 3D phone or laptop, rotate it to any angle, and download the render as a PNG with a transparent background. Runs entirely in your browser — nothing is uploaded.',
 
-    'app.byline.prefix': 'by',
+    'app.byline.prefix': 'by:',
     'app.byline.role': 'Conseil et développement logiciel',
     'app.intro':
       'easyDevicePic maps your screenshot onto a 3D phone or laptop model, lets you rotate the device to any angle with the mouse or with precise X/Y/Z sliders, and exports the result as a 2000 px-wide PNG with a fully transparent background — ready to drop into a landing page, a slide deck or an app-store listing. Everything runs in your browser: your images are never uploaded to a server.',
@@ -58,7 +58,8 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'meta.description':
       'Déposez une capture d’écran sur un mobile ou un ordinateur portable en 3D, orientez-le comme vous voulez, et téléchargez le rendu en PNG sur fond transparent. Tout se passe dans votre navigateur — rien n’est envoyé.',
 
-    'app.byline.prefix': 'par',
+    // Narrow no-break space before the colon, as French typography requires.
+    'app.byline.prefix': 'par :',
     'app.byline.role': 'Conseil et développement logiciel',
     'app.intro':
       'easyDevicePic applique votre capture d’écran sur un modèle 3D de mobile ou d’ordinateur portable, vous laisse l’orienter à la souris ou au degré près avec les curseurs X/Y/Z, et exporte le résultat en PNG de 2000 px de large sur fond entièrement transparent — prêt à intégrer dans une page, une présentation ou une fiche d’application. Tout se passe dans votre navigateur : vos images ne sont jamais envoyées sur un serveur.',

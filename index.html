@@ -10,10 +10,7 @@
       content="Drop a screenshot onto a 3D phone or laptop, rotate it to any angle, and download the render as a PNG with a transparent background. Runs entirely in your browser — nothing is uploaded."
     />
     <link rel="canonical" href="%VITE_SITE_URL%/" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='9' y='3' width='14' height='26' rx='3' fill='%234f8cff'/%3E%3Crect x='11' y='6' width='10' height='20' rx='1' fill='%2314161a'/%3E%3C/svg%3E"
-    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
     <canvas id="scene"></canvas>
@@ -30,7 +27,8 @@
       <header class="panel__header">
         <h1 class="panel__title">easyDevicePic</h1>
         <p class="panel__byline">
-          <span data-i18n="app.byline.prefix">by</span>
+          <span class="panel__byline-prefix" data-i18n="app.byline.prefix">by:</span>
+          <img class="panel__byline-logo" src="/favicon.svg" alt="" width="14" height="14" />
           <a id="byline-link" href="/about.html">André Tousch</a> —
           <span data-i18n="app.byline.role">Conseil et développement logiciel</span>
         </p>
