@@ -101,10 +101,16 @@ export async function downloadScenePng(
     // Map with the ratios actually used rather than `scale`, so the rounding
     // of the frame size cannot make the rectangle drift. Rounding outwards
     // again keeps the error on the margin side.
+    //
+    // Capping at `maxEdge` too: the frame size is a whole number of pixels, so
+    // it lands just either side of the ideal, and mapping the box back through
+    // it gives a crop of 1080.02 px about half the time — which `ceil` turns
+    // into 1081. Only the longer side can reach the cap, so this pins it to
+    // exactly `maxEdge` and costs at most one pixel of the outward margin.
     const sx = Math.floor((left * frameWidth) / lowWidth);
     const sy = Math.floor((top * frameHeight) / lowHeight);
-    const sw = Math.min(frameWidth - sx, Math.ceil((boxWidth * frameWidth) / lowWidth));
-    const sh = Math.min(frameHeight - sy, Math.ceil((boxHeight * frameHeight) / lowHeight));
+    const sw = Math.min(frameWidth - sx, maxEdge, Math.ceil((boxWidth * frameWidth) / lowWidth));
+    const sh = Math.min(frameHeight - sy, maxEdge, Math.ceil((boxHeight * frameHeight) / lowHeight));
 
     const output = document.createElement('canvas');
     output.width = sw;
