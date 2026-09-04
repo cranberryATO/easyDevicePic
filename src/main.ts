@@ -10,7 +10,7 @@ import {
   type FitMode,
 } from './screenTexture';
 import { createRotationController, ROTATION_LIMITS, type RotationState } from './rotation';
-import { EXPORT_WIDTH, downloadScenePng, exportHeightFor } from './exportPng';
+import { downloadScenePng } from './exportPng';
 import { createDropZone, createErrorBanner, createSegmentedControl, element } from './ui';
 import { LOCALES, PAGES, applyTranslations, getLocale, setLocale, t } from './i18n';
 
@@ -20,7 +20,6 @@ const fileInput = element<HTMLInputElement>('file');
 const pickButton = element<HTMLButtonElement>('pick');
 const resetButton = element<HTMLButtonElement>('reset');
 const downloadButton = element<HTMLButtonElement>('download');
-const exportSizeLabel = element('export-size');
 const errors = createErrorBanner(element('error'));
 const langSwitch = element('lang-switch');
 const bylineLink = element<HTMLAnchorElement>('byline-link');
@@ -39,7 +38,7 @@ const readouts: Record<keyof RotationState, HTMLOutputElement> = {
   z: element<HTMLOutputElement>('rot-z-out'),
 };
 
-const viewer = createViewer(canvas, { onResize: () => updateExportSizeLabel() });
+const viewer = createViewer(canvas);
 
 let device: Device | null = null;
 let picture: ImageBitmap | null = null;
@@ -137,13 +136,6 @@ async function setModel(id: string) {
   applyPicture();
 }
 
-function updateExportSizeLabel() {
-  exportSizeLabel.textContent = t('export.size', {
-    width: EXPORT_WIDTH,
-    height: exportHeightFor(canvas),
-  });
-}
-
 // --- localization ---------------------------------------------------------
 
 /**
@@ -153,13 +145,12 @@ function updateExportSizeLabel() {
 function applyLocale() {
   applyTranslations();
 
-  // Option labels and the export string are built in JS, so the DOM walk in
-  // applyTranslations() can't reach them.
+  // Option labels are built in JS, so the DOM walk in applyTranslations()
+  // cannot reach them.
   for (const option of modelSelect.options) {
     const model = MODELS.find((candidate) => candidate.id === option.value);
     if (model) option.textContent = t(model.labelKey);
   }
-  updateExportSizeLabel();
 
   const pages = PAGES[getLocale()];
   bylineLink.href = pages.about;

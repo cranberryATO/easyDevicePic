@@ -21,10 +21,7 @@ export type Viewer = {
   resize: () => void;
 };
 
-export function createViewer(
-  canvas: HTMLCanvasElement,
-  options: { onResize?: () => void } = {},
-): Viewer {
+export function createViewer(canvas: HTMLCanvasElement): Viewer {
   const renderer = new THREE.WebGLRenderer({
     canvas,
     alpha: true,
@@ -105,7 +102,6 @@ export function createViewer(
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    options.onResize?.();
     requestRender();
   }
 

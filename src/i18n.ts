@@ -42,8 +42,9 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'rotation.reset': 'Reset rotation',
 
     'export.download': 'Download PNG',
-    'export.size': '{width} × {height} px, transparent background',
+    'export.size': 'Transparent PNG, cropped to the device, 1080 px on its longer side.',
     'export.failed': 'The browser could not encode the render as a PNG.',
+    'export.empty': 'Nothing to export — the device is not visible in the frame.',
     'export.privacy': 'Runs entirely in your browser. Your images are never uploaded.',
 
     'nav.about': 'About',
@@ -85,8 +86,9 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'rotation.reset': 'Réinitialiser la rotation',
 
     'export.download': 'Télécharger le PNG',
-    'export.size': '{width} × {height} px, fond transparent',
+    'export.size': 'PNG transparent, rogné sur l’appareil, 1080 px sur son grand côté.',
     'export.failed': 'Le navigateur n’a pas pu encoder le rendu en PNG.',
+    'export.empty': 'Rien à exporter — l’appareil n’est pas visible dans le cadre.',
     'export.privacy':
       'Tout se passe dans votre navigateur. Vos images ne sont jamais envoyées.',
 
