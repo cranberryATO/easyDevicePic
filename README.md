@@ -2,9 +2,21 @@
 
 Display a picture on a device screen. Download render.
 
+### → [easydevicepic.andretousch.com](https://easydevicepic.andretousch.com)
+
+Free, no account, nothing to install. Your images never leave your machine —
+the 3D rendering and the PNG export both run in the browser, and there is no
+server to upload them to. Also in French at
+[easydevicepic.andretousch.com/fr/](https://easydevicepic.andretousch.com/fr/).
+
+[![A 3D phone showing a screenshot, next to the easyDevicePic logo](public/og.png)](https://easydevicepic.andretousch.com)
+
 A one-page app that maps an image onto a 3D device model, lets you rotate the
 device with the mouse or with explicit angle sliders, and exports the render as
 a PNG with a transparent background.
+
+The rest of this file is for running it yourself or working on the code — none
+of it is needed to just use the site.
 
 ## Getting started
 
@@ -13,13 +25,13 @@ npm install
 npm run dev
 ```
 
-Then add the assets — the app needs them to show anything:
+The models and placeholder pictures are committed, so a fresh clone runs as-is:
 
 ```
-public/models/phone.glb                  default device
-public/models/laptop.glb                 second device (optional)
-public/textures/phone-placeholder.png    picture shown on the phone
-public/textures/laptop-placeholder.png   picture shown on the laptop
+public/models/phone.glb                default device
+public/models/laptop.glb               second device
+public/textures/9_20_placeholder.png   picture shown on the phone
+public/textures/fhd_placeholder.png    picture shown on the laptop
 ```
 
 Each device carries its own placeholder (`placeholderImageUrl` in
