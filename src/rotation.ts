@@ -103,9 +103,3 @@ export function createRotationController(options: {
     reset: () => set(DEFAULT_ROTATION),
   };
 }
-
-/** Keeps an angle inside [-limit, limit] by wrapping around the full turn. */
-function wrap(value: number, limit: number): number {
-  const span = limit * 2;
-  return ((((value + limit) % span) + span) % span) - limit;
-}
