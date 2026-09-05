@@ -152,8 +152,9 @@ function applyLocale() {
     if (model) option.textContent = t(model.labelKey);
   }
 
+  // The byline's own link is external and locale-independent, so it is not
+  // listed here — only the in-site pages that have a per-locale twin.
   const pages = PAGES[getLocale()];
-  bylineLink.href = pages.about;
   aboutLink.href = pages.about;
   privacyLink.href = pages.privacy;
   legalLink.href = pages.legal;

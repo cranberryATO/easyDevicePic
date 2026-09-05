@@ -108,8 +108,9 @@ body {
 }
 
 .panel__byline a {
+  display: block;
   color: var(--muted);
-  text-decoration-color: var(--panel-border);
+  /* text-decoration-color: var(--panel-border); */
   text-underline-offset: 2px;
 }
 
