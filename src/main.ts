@@ -1,41 +1,56 @@
-import './style.css';
-import { createViewer } from './scene';
-import { disposeDevice, loadDevice, type Device } from './device';
-import { DEFAULT_MODEL_ID, MODELS, getModel } from './models';
+import "./style.css";
+import { createViewer } from "./scene";
+import { disposeDevice, loadDevice, type Device } from "./device";
+import { DEFAULT_MODEL_ID, MODELS, getModel } from "./models";
 import {
   createScreenTexture,
   isFitMode,
   loadImageFromBlob,
   loadImageFromUrl,
   type FitMode,
-} from './screenTexture';
-import { createRotationController, ROTATION_LIMITS, type RotationState } from './rotation';
-import { downloadScenePng } from './exportPng';
-import { createDropZone, createErrorBanner, createSegmentedControl, element } from './ui';
-import { LOCALES, PAGES, applyTranslations, getLocale, setLocale, t } from './i18n';
+} from "./screenTexture";
+import {
+  createRotationController,
+  ROTATION_LIMITS,
+  type RotationState,
+} from "./rotation";
+import { downloadScenePng } from "./exportPng";
+import {
+  createDropZone,
+  createErrorBanner,
+  createSegmentedControl,
+  element,
+} from "./ui";
+import {
+  LOCALES,
+  PAGES,
+  applyTranslations,
+  getLocale,
+  setLocale,
+  t,
+} from "./i18n";
 
-const canvas = element<HTMLCanvasElement>('scene');
-const modelSelect = element<HTMLSelectElement>('model');
-const fileInput = element<HTMLInputElement>('file');
-const pickButton = element<HTMLButtonElement>('pick');
-const resetButton = element<HTMLButtonElement>('reset');
-const downloadButton = element<HTMLButtonElement>('download');
-const errors = createErrorBanner(element('error'));
-const langSwitch = element('lang-switch');
-const bylineLink = element<HTMLAnchorElement>('byline-link');
-const aboutLink = element<HTMLAnchorElement>('link-about');
-const privacyLink = element<HTMLAnchorElement>('link-privacy');
-const legalLink = element<HTMLAnchorElement>('link-legal');
+const canvas = element<HTMLCanvasElement>("scene");
+const modelSelect = element<HTMLSelectElement>("model");
+const fileInput = element<HTMLInputElement>("file");
+const pickButton = element<HTMLButtonElement>("pick");
+const resetButton = element<HTMLButtonElement>("reset");
+const downloadButton = element<HTMLButtonElement>("download");
+const errors = createErrorBanner(element("error"));
+const langSwitch = element("lang-switch");
+const aboutLink = element<HTMLAnchorElement>("link-about");
+const privacyLink = element<HTMLAnchorElement>("link-privacy");
+const legalLink = element<HTMLAnchorElement>("link-legal");
 
 const sliders: Record<keyof RotationState, HTMLInputElement> = {
-  x: element<HTMLInputElement>('rot-x'),
-  y: element<HTMLInputElement>('rot-y'),
-  z: element<HTMLInputElement>('rot-z'),
+  x: element<HTMLInputElement>("rot-x"),
+  y: element<HTMLInputElement>("rot-y"),
+  z: element<HTMLInputElement>("rot-z"),
 };
 const readouts: Record<keyof RotationState, HTMLOutputElement> = {
-  x: element<HTMLOutputElement>('rot-x-out'),
-  y: element<HTMLOutputElement>('rot-y-out'),
-  z: element<HTMLOutputElement>('rot-z-out'),
+  x: element<HTMLOutputElement>("rot-x-out"),
+  y: element<HTMLOutputElement>("rot-y-out"),
+  z: element<HTMLOutputElement>("rot-z-out"),
 };
 
 const viewer = createViewer(canvas);
@@ -44,7 +59,7 @@ let device: Device | null = null;
 let picture: ImageBitmap | null = null;
 /** While true, changing device swaps in that device's own placeholder. */
 let showingPlaceholder = true;
-let fit: FitMode = 'stretch';
+let fit: FitMode = "stretch";
 
 const rotation = createRotationController({
   target: viewer.pivot,
@@ -56,7 +71,7 @@ const rotation = createRotationController({
 });
 
 function syncSliders(state: RotationState) {
-  for (const axis of ['x', 'y', 'z'] as const) {
+  for (const axis of ["x", "y", "z"] as const) {
     const degrees = Math.round(state[axis]);
     sliders[axis].value = String(degrees);
     readouts[axis].textContent = `${degrees}°`;
@@ -67,7 +82,11 @@ function syncSliders(state: RotationState) {
 function applyPicture() {
   if (!device || !picture) return;
   const previous = device.screenMaterial.map;
-  device.screenMaterial.map = createScreenTexture(picture, device.screenAspect, fit);
+  device.screenMaterial.map = createScreenTexture(
+    picture,
+    device.screenAspect,
+    fit,
+  );
   device.screenMaterial.needsUpdate = true;
   previous?.dispose();
   viewer.requestRender();
@@ -93,7 +112,9 @@ async function setModel(id: string) {
 
   // Fetch this device's placeholder alongside its model — but only while the
   // user hasn't supplied a picture, since theirs survives a device change.
-  const placeholder = showingPlaceholder ? loadImageFromUrl(config.placeholderImageUrl) : null;
+  const placeholder = showingPlaceholder
+    ? loadImageFromUrl(config.placeholderImageUrl)
+    : null;
   // Claim the rejection now so a placeholder 404 can't surface as an unhandled
   // rejection when the model itself fails first.
   placeholder?.catch(() => undefined);
@@ -165,12 +186,12 @@ function applyLocale() {
 function renderLanguageSwitch() {
   langSwitch.replaceChildren();
   for (const locale of LOCALES) {
-    const button = document.createElement('button');
-    button.type = 'button';
+    const button = document.createElement("button");
+    button.type = "button";
     button.textContent = locale.toUpperCase();
-    button.className = locale === getLocale() ? 'is-active' : '';
-    button.setAttribute('aria-pressed', String(locale === getLocale()));
-    button.addEventListener('click', () => {
+    button.className = locale === getLocale() ? "is-active" : "";
+    button.setAttribute("aria-pressed", String(locale === getLocale()));
+    button.addEventListener("click", () => {
       if (locale === getLocale()) return;
       setLocale(locale);
       applyLocale();
@@ -178,7 +199,7 @@ function renderLanguageSwitch() {
       // address bar stops disagreeing with the page and a later refresh or a
       // shared link lands on the right document. A real navigation would throw
       // away the picture and the rotation, which is what applyLocale avoids.
-      history.replaceState(null, '', PAGES[locale].app);
+      history.replaceState(null, "", PAGES[locale].app);
     });
     langSwitch.append(button);
   }
@@ -187,47 +208,50 @@ function renderLanguageSwitch() {
 // --- wiring ---------------------------------------------------------------
 
 for (const model of MODELS) {
-  const option = document.createElement('option');
+  const option = document.createElement("option");
   option.value = model.id;
   option.textContent = t(model.labelKey);
   modelSelect.append(option);
 }
 modelSelect.value = DEFAULT_MODEL_ID;
-modelSelect.addEventListener('change', () => void setModel(modelSelect.value));
+modelSelect.addEventListener("change", () => void setModel(modelSelect.value));
 
-for (const axis of ['x', 'y', 'z'] as const) {
+for (const axis of ["x", "y", "z"] as const) {
   sliders[axis].min = String(-ROTATION_LIMITS[axis]);
   sliders[axis].max = String(ROTATION_LIMITS[axis]);
-  sliders[axis].addEventListener('input', () => {
+  sliders[axis].addEventListener("input", () => {
     rotation.set({ [axis]: Number(sliders[axis].value) });
   });
 }
-resetButton.addEventListener('click', () => rotation.reset());
+resetButton.addEventListener("click", () => rotation.reset());
 
-createSegmentedControl(element('fit'), (value) => {
+createSegmentedControl(element("fit"), (value) => {
   if (!isFitMode(value)) return;
   fit = value;
   applyPicture();
 });
 
-pickButton.addEventListener('click', () => fileInput.click());
-fileInput.addEventListener('change', () => {
+pickButton.addEventListener("click", () => fileInput.click());
+fileInput.addEventListener("change", () => {
   const file = fileInput.files?.[0];
   if (file) void setPicture(file);
-  fileInput.value = '';
+  fileInput.value = "";
 });
 
 createDropZone({
-  overlay: element('drop-overlay'),
+  overlay: element("drop-overlay"),
   onFile: (file) => void setPicture(file),
   onReject: (message) => errors.show(new Error(message)),
 });
 
-downloadButton.addEventListener('click', async () => {
+downloadButton.addEventListener("click", async () => {
   downloadButton.disabled = true;
   try {
-    const stamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-    await downloadScenePng(viewer, `easydevicepic-${modelSelect.value}-${stamp}.png`);
+    const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+    await downloadScenePng(
+      viewer,
+      `easydevicepic-${modelSelect.value}-${stamp}.png`,
+    );
   } catch (error) {
     errors.show(error);
   } finally {
