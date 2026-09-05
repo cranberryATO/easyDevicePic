@@ -1,0 +1,14 @@
+# https://www.robotstxt.org/robotstxt.html
+#
+# easyDevicePic is a free, public, client-side tool. Every crawler is welcome,
+# including the AI ones that answer questions about tools like this one —
+# GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and the rest
+# are all covered by the wildcard below.
+#
+# Note: unlike the canonical and hreflang tags in the pages, the URLs here are
+# hardcoded. Change them alongside VITE_SITE_URL if the domain ever moves.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://easydevicepic.andretousch.com/sitemap.xml

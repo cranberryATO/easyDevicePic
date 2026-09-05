@@ -44,13 +44,40 @@
     />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Données structurées. Voir index.html pour les notes détaillées. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "url": "%VITE_SITE_URL%/a-propos.html",
+        "inLanguage": "fr",
+        "name": "À propos d'easyDevicePic",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "André Tousch",
+          "url": "https://andretousch.com",
+          "email": "andre@andretousch.com",
+          "jobTitle": "Conseil et développement logiciel",
+          "description": "Développeur de logiciel indépendant, en particulier de solutions d'automatisation pour toutes sortes de processus.",
+          "sameAs": ["https://github.com/cranberryATO"],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nîmes",
+            "addressRegion": "Occitanie",
+            "addressCountry": "FR"
+          },
+          "areaServed": { "@type": "Country", "name": "France" }
+        }
+      }
+    </script>
+
     <link rel="stylesheet" href="/src/pages.css" />
   </head>
   <body>
     <main class="page">
       <nav class="page__nav">
-        <a class="page__brand" href="/?lang=fr">easyDevicePic</a>
-        <a class="page__back" href="/?lang=fr">← Retour à l'application</a>
+        <a class="page__brand" href="/fr/">easyDevicePic</a>
+        <a class="page__back" href="/fr/">← Retour à l'application</a>
         <span class="lang-switch lang-switch--page">
           <a href="/about.html">EN</a>
           <span class="is-active" aria-current="page">FR</span>
@@ -95,7 +122,7 @@
       </p>
 
       <footer class="page__footer">
-        <a href="/?lang=fr">L'application</a>
+        <a href="/fr/">L'application</a>
         <span aria-hidden="true">·</span>
         <a href="/confidentialite.html">Confidentialité</a>
         <span aria-hidden="true">·</span>

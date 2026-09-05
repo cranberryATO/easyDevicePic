@@ -59,6 +59,8 @@ convention each `.glb` must follow.
 | `rotation.ts`       | the single rotation state that drag and sliders share |
 | `exportPng.ts`      | fixed-resolution transparent PNG render               |
 | `models.ts`         | the device registry                                   |
+| `strings.ts`        | every translatable string and per-locale URL, DOM-free |
+| `i18n.ts`           | locale detection and the runtime DOM translation pass |
 | `ui.ts` / `main.ts` | DOM helpers and wiring                                |
 
 A few decisions worth knowing about if you change things:
@@ -76,6 +78,19 @@ A few decisions worth knowing about if you change things:
 - **Export** resizes the canvas in place with `updateStyle: false` and reads it
   back with `toBlob`, which lets the browser un-premultiply the alpha — that is
   what keeps the device edges free of a dark fringe.
+- **The French home page at `/fr/` has no source file.** It is generated from
+  the built `index.html` by the `frenchHomePage` plugin in `vite.config.ts`,
+  which walks the same `data-i18n` attributes as `applyTranslations()` and
+  fills them from `strings.ts`. Search engines score what they are served, and
+  the AI crawlers run no JavaScript at all, so the French app page has to exist
+  as real HTML — but hand-maintaining a copy would drift, and `ui.ts` throws on
+  any missing element id, so drift would break the page rather than just look
+  wrong. The generator therefore **fails the build** on anything it cannot
+  account for: a `data-i18n` key with no French string, a missing `<title>`,
+  or a JSON-LD `featureList` that no longer matches `FEATURES.en`. If you add a
+  string or restructure the panel, run `npm run build` before pushing.
+- **`strings.ts` must stay free of `window`.** `vite.config.ts` imports it in
+  Node to build that page; `i18n.ts` is where anything browser-facing lives.
 
 ## Licence
 

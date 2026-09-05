@@ -44,6 +44,34 @@
     />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Structured data. See index.html for the rationale; here the subject of
+         the page is the author rather than the app. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "url": "%VITE_SITE_URL%/about.html",
+        "inLanguage": "en",
+        "name": "About easyDevicePic",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "André Tousch",
+          "url": "https://andretousch.com",
+          "email": "andre@andretousch.com",
+          "jobTitle": "Software consultant and developer",
+          "description": "Freelance software developer, working in particular on automation solutions for all kinds of processes.",
+          "sameAs": ["https://github.com/cranberryATO"],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nîmes",
+            "addressRegion": "Occitanie",
+            "addressCountry": "FR"
+          },
+          "areaServed": { "@type": "Country", "name": "France" }
+        }
+      }
+    </script>
+
     <link rel="stylesheet" href="/src/pages.css" />
   </head>
   <body>

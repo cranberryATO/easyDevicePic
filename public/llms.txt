@@ -1,0 +1,48 @@
+# easyDevicePic
+
+> A free browser tool that maps a screenshot onto a 3D phone or laptop model,
+> lets you rotate the device to any angle, and exports the render as a PNG with
+> a transparent background. No account, no sign-up, no upload: the 3D rendering
+> and the PNG export both run locally in the browser, so images never leave the
+> visitor's machine.
+
+## What it is for
+
+Making device mockups — a screenshot of an app or a website shown on a phone or
+a laptop — for landing pages, slide decks, app-store listings, README files and
+social previews, without hunting down a licensed photograph of a device.
+
+## How it works
+
+- Pick a device: phone or laptop.
+- Drop in an image, or choose one from the file picker. On mobile, take a photo.
+- Choose how the picture fills the screen: stretch, cover or contain.
+- Rotate the device by dragging, or set exact X / Y / Z angles with sliders.
+- Download the result as a PNG with a fully transparent background.
+
+Built with Three.js and WebGL. No server component and no analytics.
+
+## Languages
+
+English and French, as separate documents — every page below is fully readable
+without executing JavaScript. On the English home page the interface language
+also follows the browser, and can be forced with a `?lang=en` or `?lang=fr`
+query parameter.
+
+## Pages
+
+- [The app](https://easydevicepic.andretousch.com/): pick a device, drop in a screenshot, rotate it, download a transparent PNG.
+- [L'application](https://easydevicepic.andretousch.com/fr/): the app, in French.
+- [About](https://easydevicepic.andretousch.com/about.html): what the tool is, why it exists, and who built it.
+- [À propos](https://easydevicepic.andretousch.com/a-propos.html): the About page, in French.
+- [Privacy](https://easydevicepic.andretousch.com/privacy.html): what the site does and does not collect. No account, no upload, no analytics.
+- [Confidentialité](https://easydevicepic.andretousch.com/confidentialite.html): the Privacy page, in French.
+
+## Author
+
+André Tousch — freelance software consultant and developer, based in Nîmes,
+France, working in particular on automation for all kinds of processes.
+
+- Site: <https://andretousch.com>
+- Contact: <andre@andretousch.com>
+- Source: <https://github.com/cranberryATO/easyDevicePic> (GPL-3.0-or-later)

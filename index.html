@@ -10,6 +10,11 @@
       content="Drop a screenshot onto a 3D phone or laptop, rotate it to any angle, and download the render as a PNG with a transparent background. Runs entirely in your browser — nothing is uploaded."
     />
     <link rel="canonical" href="%VITE_SITE_URL%/" />
+    <!-- /fr/ is this page with the French strings baked in at build time, so
+         the pair is two real documents — see vite.config.ts. -->
+    <link rel="alternate" hreflang="en" href="%VITE_SITE_URL%/" />
+    <link rel="alternate" hreflang="fr" href="%VITE_SITE_URL%/fr/" />
+    <link rel="alternate" hreflang="x-default" href="%VITE_SITE_URL%/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Link previews (WhatsApp, Slack, iMessage, LinkedIn, Facebook…). These
@@ -37,6 +42,45 @@
       content="A 3D phone showing a screenshot, next to the easyDevicePic logo."
     />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Structured data. Search engines and AI assistants read this to decide
+         what the page *is* — a free tool, what it does, who wrote it — rather
+         than inferring it from prose. Kept in English like the OG tags: the
+         crawlers that consume it do not run the runtime translation. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "easyDevicePic",
+        "url": "%VITE_SITE_URL%/",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Any browser with WebGL",
+        "browserRequirements": "Requires WebGL",
+        "inLanguage": ["en", "fr"],
+        "description": "Drop a screenshot onto a 3D phone or laptop, rotate it to any angle, and download the render as a PNG with a transparent background. Runs entirely in your browser — nothing is uploaded.",
+        "screenshot": "%VITE_SITE_URL%/og.png",
+        "featureList": [
+          "Map a screenshot onto a 3D phone or laptop model",
+          "Rotate the device by dragging or with exact X/Y/Z sliders",
+          "Stretch, cover or contain the picture on the screen",
+          "Export a PNG with a fully transparent background",
+          "Runs client-side — images are never uploaded"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "isAccessibleForFree": true,
+        "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+        "author": {
+          "@type": "Person",
+          "name": "André Tousch",
+          "url": "https://andretousch.com",
+          "jobTitle": "Software consultant and developer"
+        }
+      }
+    </script>
   </head>
   <body>
     <canvas id="scene"></canvas>
@@ -65,7 +109,7 @@
           />
           <a id="byline-link" href="/about.html">André Tousch</a> —
           <span data-i18n="app.byline.role"
-            >Conseil et développement logiciel</span
+            >Software consultant and developer</span
           >
         </p>
         <p class="visually-hidden" data-i18n="app.intro">

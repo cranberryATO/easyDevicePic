@@ -173,6 +173,11 @@ function renderLanguageSwitch() {
       if (locale === getLocale()) return;
       setLocale(locale);
       applyLocale();
+      // Point the URL at the matching home page without navigating, so the
+      // address bar stops disagreeing with the page and a later refresh or a
+      // shared link lands on the right document. A real navigation would throw
+      // away the picture and the rotation, which is what applyLocale avoids.
+      history.replaceState(null, '', PAGES[locale].app);
     });
     langSwitch.append(button);
   }
