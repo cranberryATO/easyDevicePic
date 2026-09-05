@@ -2,7 +2,11 @@ export type ModelConfig = {
   id: string;
   /** i18n key for the name shown in the device dropdown. */
   labelKey: string;
-  /** Path under public/, resolved relative to the site root. */
+  /**
+   * Path under public/, as a root-absolute URL. The leading slash matters:
+   * these are fetched from whatever page is open, and the French home page
+   * lives at /fr/, so a relative path would look for /fr/models/… instead.
+   */
   url: string;
   /**
    * Name of the mesh — or of its material — that carries the screen surface.
@@ -27,16 +31,16 @@ export const MODELS: ModelConfig[] = [
   {
     id: "phone",
     labelKey: "model.phone",
-    url: "models/phone.glb",
+    url: "/models/phone.glb",
     screenName: "Screen",
-    placeholderImageUrl: "textures/9_20_placeholder.png",
+    placeholderImageUrl: "/textures/9_20_placeholder.png",
   },
   {
     id: "laptop",
     labelKey: "model.laptop",
-    url: "models/laptop.glb",
+    url: "/models/laptop.glb",
     screenName: "Screen",
-    placeholderImageUrl: "textures/fhd_placeholder.png",
+    placeholderImageUrl: "/textures/fhd_placeholder.png",
   },
 ];
 

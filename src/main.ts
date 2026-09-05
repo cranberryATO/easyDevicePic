@@ -126,7 +126,7 @@ async function setModel(id: string) {
       errors.show(
         new Error(
           `Loaded ${config.id}, but its placeholder image is missing.\n` +
-            `Expected public/${config.placeholderImageUrl} — ${
+            `Expected public${config.placeholderImageUrl} — ${
               error instanceof Error ? error.message : String(error)
             }`,
         ),
