@@ -1,9 +1,9 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
 export type RotationState = { x: number; y: number; z: number };
 
 /** Slider ranges, in degrees. Pitch is limited so drag never inverts yaw. */
-export const ROTATION_LIMITS: RotationState = { x: 90, y: 180, z: 180 };
+export const ROTATION_LIMITS: RotationState = { x: 90, y: 90, z: 45 };
 
 export const DEFAULT_ROTATION: RotationState = { x: 0, y: 0, z: 0 };
 
@@ -39,10 +39,24 @@ export function createRotationController(options: {
 
   function set(partial: Partial<RotationState>) {
     if (partial.x !== undefined) {
-      state.x = THREE.MathUtils.clamp(partial.x, -ROTATION_LIMITS.x, ROTATION_LIMITS.x);
+      state.x = THREE.MathUtils.clamp(
+        partial.x,
+        -ROTATION_LIMITS.x,
+        ROTATION_LIMITS.x,
+      );
     }
-    if (partial.y !== undefined) state.y = wrap(partial.y, ROTATION_LIMITS.y);
-    if (partial.z !== undefined) state.z = wrap(partial.z, ROTATION_LIMITS.z);
+    if (partial.y !== undefined)
+      state.y = THREE.MathUtils.clamp(
+        partial.y,
+        -ROTATION_LIMITS.y,
+        ROTATION_LIMITS.y,
+      );
+    if (partial.z !== undefined)
+      state.z = THREE.MathUtils.clamp(
+        partial.z,
+        -ROTATION_LIMITS.z,
+        ROTATION_LIMITS.z,
+      );
     apply();
   }
 
@@ -50,16 +64,16 @@ export function createRotationController(options: {
   let lastX = 0;
   let lastY = 0;
 
-  domElement.addEventListener('pointerdown', (event) => {
+  domElement.addEventListener("pointerdown", (event) => {
     if (event.button !== 0 || pointerId !== null) return;
     pointerId = event.pointerId;
     lastX = event.clientX;
     lastY = event.clientY;
     domElement.setPointerCapture(pointerId);
-    domElement.classList.add('is-dragging');
+    domElement.classList.add("is-dragging");
   });
 
-  domElement.addEventListener('pointermove', (event) => {
+  domElement.addEventListener("pointermove", (event) => {
     if (event.pointerId !== pointerId) return;
     const dx = event.clientX - lastX;
     const dy = event.clientY - lastY;
@@ -74,12 +88,12 @@ export function createRotationController(options: {
   function endDrag(event: PointerEvent) {
     if (event.pointerId !== pointerId) return;
     domElement.releasePointerCapture(pointerId);
-    domElement.classList.remove('is-dragging');
+    domElement.classList.remove("is-dragging");
     pointerId = null;
   }
 
-  domElement.addEventListener('pointerup', endDrag);
-  domElement.addEventListener('pointercancel', endDrag);
+  domElement.addEventListener("pointerup", endDrag);
+  domElement.addEventListener("pointercancel", endDrag);
 
   apply();
 
