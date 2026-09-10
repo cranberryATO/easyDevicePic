@@ -16,6 +16,15 @@
     <link rel="alternate" hreflang="fr" href="%VITE_SITE_URL%/fr/" />
     <link rel="alternate" hreflang="x-default" href="%VITE_SITE_URL%/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Says "dark" before any CSS has loaded, so the first paint is not white.
+         tokens.css sets the same thing for anything that reaches the stylesheet
+         another way. -->
+    <meta name="color-scheme" content="dark" />
+    <!-- A real <link> rather than `import "./style.css"` in main.ts, which held
+         the styles behind the whole module graph — three.js included — and left
+         the page unstyled for a beat. Vite swaps in the hashed asset at build
+         time, the same as on the content pages. -->
+    <link rel="stylesheet" href="/src/style.css" />
 
     <!-- Link previews (WhatsApp, Slack, iMessage, LinkedIn, Facebook…). These
          scrapers do not run JavaScript, so unlike the title above they are not

@@ -1,4 +1,4 @@
-import "./style.css";
+// style.css is linked from index.html's <head> so it is render-blocking.
 import { createViewer } from "./scene";
 import { disposeDevice, loadDevice, type Device } from "./device";
 import { DEFAULT_MODEL_ID, MODELS, getModel } from "./models";
